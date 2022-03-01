@@ -1,5 +1,5 @@
 # Image text redaction
-Evaluation of models for image text detection, recognition, and redaction. The models evaluated can detect horizontal print and handwritten text. Detection of curved text is beyond scope although angled text in some orientations can be detected by one or mode or the models. The redaction module is a dummy placeholder that redacts any text that is recognized. It needs to be updated to selectively redact text based on use case.
+Evaluation of  models for image text detection, recognition, and redaction. The evaluated models can detect horizontal print and handwritten text. Detection of curved text is beyond scope of these models although angled text in some orientations can be detected by one or mode or the models. The redaction module is a dummy placeholder that redacts any text that is recognized. It needs to be updated to selectively redact text based on use case.
 
 Three models evaluated 
 - [easy ocr](https://github.com/JaidedAI/EasyOCR)
