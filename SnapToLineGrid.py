@@ -1,11 +1,9 @@
 import pdb
 import PIL
 from PIL import ImageDraw
-import OCRWrapper as ocr
 import sys
 import argparse
 import json
-import SnapToLineGrid as sn
 from collections import OrderedDict
 
 class SnapToLineGrid:
@@ -116,6 +114,7 @@ class SnapToLineGrid:
 
     def break_into_phrases(self,lines_arr,spacing_size):
         ret_phrases = []
+        phrase_bbox = {}
         for i in range(len(lines_arr)):
             values_list = list(lines_arr[i].values())
             sorted_list = sorted(values_list, key=lambda d: d['left']) 
@@ -130,10 +129,12 @@ class SnapToLineGrid:
                     phrase_bbox["bottom"] = node["bottom"]
                     phrase_bbox["prediction"] = node["prediction"]
                     phrase_bbox["conf"] = node["conf"]
+                    phrase_bbox["inf_time"] = node["inf_time"]
                     phrase_bbox["count"] = 1
                 else:
                     if (node["left"] - phrase_bbox["right"] > spacing_size):
                         phrase_bbox["conf"] = float(phrase_bbox["conf"])/phrase_bbox["count"] #Average confidence
+                        phrase_bbox["inf_time"] = float(phrase_bbox["inf_time"])/phrase_bbox["count"] #Average prediction time
                         ret_phrases.append(phrase_bbox)
                         phrase_bbox = {}
                         phrase_bbox["left"] = node["left"]
@@ -142,6 +143,7 @@ class SnapToLineGrid:
                         phrase_bbox["bottom"] = node["bottom"]
                         phrase_bbox["prediction"] = node["prediction"]
                         phrase_bbox["conf"] = node["conf"]
+                        phrase_bbox["inf_time"] = node["inf_time"]
                         phrase_bbox["count"] = 1
                     else:
                         #Note left is not need - this is a concat of x axis sorted boxes
@@ -150,9 +152,11 @@ class SnapToLineGrid:
                         phrase_bbox["bottom"] = node["bottom"] if node["bottom"] > phrase_bbox["bottom"] else phrase_bbox["bottom"]
                         phrase_bbox["prediction"] = phrase_bbox["prediction"] + " " + node["prediction"]
                         phrase_bbox["conf"] = phrase_bbox["conf"]  + node["conf"]
+                        phrase_bbox["inf_time"] = phrase_bbox["inf_time"]  + node["inf_time"]
                         phrase_bbox["count"] += 1
             if (len(phrase_bbox) != 0):
                 phrase_bbox["conf"] = float(phrase_bbox["conf"])/phrase_bbox["count"] #Average confidence
+                phrase_bbox["inf_time"] = float(phrase_bbox["inf_time"])/phrase_bbox["count"] #Average prediction time
                 ret_phrases.append(phrase_bbox)
                 phrase_bbox = {}
         assert(len(phrase_bbox) == 0)

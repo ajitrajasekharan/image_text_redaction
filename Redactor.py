@@ -1,5 +1,4 @@
 import pdb
-import easyocr
 import PIL
 from PIL import ImageDraw
 from PIL import Image
@@ -16,13 +15,14 @@ class Redactor:
             os.makedirs(save_dir)
 
     def redact(self,regions,img,prefix_name = "redacted"):
+        
         for i in range(len(regions)):
             bbox = regions[i]
-            smudge_img = Image.new('RGB',(bbox["right"] - bbox["left"],bbox["bottom"] - bbox["top"]),(0,0,0))
+            smudge_img = Image.new('RGB',(int(bbox["right"] - bbox["left"]),int(bbox["bottom"] - bbox["top"])),(0,0,0))
             draw = ImageDraw.Draw(smudge_img)
             draw.text((0,0), "Redacted", fill=(255, 255, 255))
-            img.paste(smudge_img,(bbox["left"],bbox["top"]))
-        if (self.save_redacts):
+            img.paste(smudge_img,(int(bbox["left"]),int(bbox["top"])))
+        if (len(regions) > 0 and self.save_redacts):
             if (prefix_name.endswith(".jpg")):
                 file_name = prefix_name
             else:
