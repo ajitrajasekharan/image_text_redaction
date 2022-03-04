@@ -12,4 +12,11 @@ _For TR OCR, both handwritten and print text models are tested_
 
 <img src="gogle_image_example.png" width="800">
 
-[Sample Image from Google Healthare page](https://cloud.google.com/architecture/de-identification-of-medical-images-through-the-cloud-healthcare-api)
+[Sample XRAY Image from Google Healthare page](https://cloud.google.com/architecture/de-identification-of-medical-images-through-the-cloud-healthcare-api)
+
+
+
+# ToDo
+- Current bbox output of OCR models are coalesces to form bboxes around phrases. Additional info of bbox coalaescing around regions to be done to assist Deidentification. This will be optional information. Line based coalescing is requried for model that only do recognition (TROCR). They cant accept multiline regions.
+- Try other fully transformer based models  that are emerging. 
+- TRCOR recognition is quite slow compared to PaddleOCR and EasyOCR. The latter two are on average in tens of milliseconds for an entire image whereas TROCR takes time in order of seconds for each text region within an image. For pure evaluation CPUs may suffice, given this caveat
