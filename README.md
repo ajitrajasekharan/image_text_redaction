@@ -7,3 +7,8 @@ Three models evaluated
 - [Paddle OCR](https://github.com/PaddlePaddle/PaddleOCR)
 
 _For TR OCR, both handwritten and print text models are tested_
+
+
+
+<img src="gogle_image_example.png" width="600">
+[Image from Google Healthare page](https://cloud.google.com/architecture/de-identification-of-medical-images-through-the-cloud-healthcare-api)
