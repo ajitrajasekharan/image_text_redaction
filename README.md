@@ -6,4 +6,4 @@ Three models evaluated
 - [TR OCR](https://github.com/microsoft/unilm/tree/master/trocr) It is also available on [Huggingface](https://huggingface.co/microsoft/trocr-base-handwritten)
 - [Paddle OCR](https://github.com/PaddlePaddle/PaddleOCR)
 
-_For TRC OCR, both handwritten and print text models are tested_
+_For TR OCR, both handwritten and print text models are tested_
