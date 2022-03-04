@@ -10,7 +10,7 @@ _For TR OCR, both handwritten and print text models are tested_
 
 
 
-<img src="gogle_image_example.png" width="800">
+<img src="gogle_image_example.png" width="1000">
 
 [Sample XRAY Image from Google Healthare page](https://cloud.google.com/architecture/de-identification-of-medical-images-through-the-cloud-healthcare-api)
 
